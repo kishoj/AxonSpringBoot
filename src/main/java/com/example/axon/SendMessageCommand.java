@@ -6,6 +6,6 @@ import lombok.Value;
 
 @Value
 public class SendMessageCommand {
-	private UUID messageId;
+	private UUID id;
 	private String message;
 }

@@ -9,14 +9,17 @@ import org.slf4j.LoggerFactory;
 
 import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
 
+import java.util.UUID;
+
 @Aggregate
 public class Message  {
 	
 	private final static Logger LOGGER = LoggerFactory.getLogger(Message.class);
 	
 	@AggregateIdentifier
-	private String messageId;
-
+	private UUID id;
+	
+	@SuppressWarnings("unused")
 	private String message;
 
 	public Message() {
@@ -26,13 +29,13 @@ public class Message  {
 	public Message(SendMessageCommand command) {
 		LOGGER.info("SendMessageCommand command received in Aggregate");
 		LOGGER.info("Preparing MessageSentEvent event to fire...");
-		apply(new MessageSentEvent(command.getMessageId(), command.getMessage()));
+		apply(new MessageSentEvent(command.getId(), command.getMessage()));
 	}
 
 	@EventSourcingHandler
 	public void on(MessageSentEvent event) {
 		LOGGER.info("Update aggregate from MessageSentEvent");
-		this.messageId = event.getMessageId().toString();
+		this.id = event.getId();
 		this.message = event.getMessage();
 	}
 

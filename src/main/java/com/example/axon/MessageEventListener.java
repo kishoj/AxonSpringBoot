@@ -21,7 +21,7 @@ public class MessageEventListener {
 	@EventHandler
 	public void on(MessageSentEvent event) {
 		LOGGER.info("MessageSentEvent Handled from MessageEventListener to persist in database");
-		repository.save(new MessageEntry(event.getMessageId().toString(), event.getMessage()));
+		repository.save(new MessageEntry(event.getId(), event.getMessage()));
 	}
 
 }

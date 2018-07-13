@@ -9,6 +9,6 @@ import lombok.Value;
 @Value
 @Revision("1.0")
 public class MessageSentEvent {
-	private UUID messageId;
+	private UUID id;
 	private String message;
 }

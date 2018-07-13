@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/message")
+@RequestMapping("/messages")
 public class MessageRestController {
 	
 	private static final Logger LOGGER = getLogger(MessageRestController.class);
